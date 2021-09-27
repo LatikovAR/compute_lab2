@@ -1,0 +1,8 @@
+cmake_minimum_required(VERSION 3.5)
+
+project(matrix LANGUAGES CXX)
+
+set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+
+add_executable(matrix main.cpp linear_equation.cpp tests.cpp)
