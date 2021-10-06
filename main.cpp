@@ -1,4 +1,5 @@
 #include <iostream>
+#include <fstream>
 #include <vector>
 
 #include "matrix.h"
@@ -24,22 +25,25 @@ int main()
         x0[i] = 1.0;
     }
 
+    std::ofstream fout;
+    fout.open("1.txt");
+
     auto sol_gauss = solve_linear_equation_by_Gauss(A, f);
     double gauss_nev = N1(A * sol_gauss - f);
-    std::cout << "Gauss: ";
+    fout << "Gauss: (";
     for(const auto& el : sol_gauss) {
-        std::cout << el << " ";
+        fout << el << " ";
     }
-    std::cout << std::endl;
-    std::cout << "Gauss_nev: " << gauss_nev << std::endl;
+    fout << ")" << std::endl;
+    fout << "Gauss_nev: " << gauss_nev << std::endl;
 
     auto sol_zeidel = solve_linear_equation_by_Zeidel(A, f, x0);
     double zeidel_nev = N1(A * sol_zeidel - f);
-    std::cout << "Zeidel: ";
+    fout << "Zeidel: (";
     for(const auto& el : sol_zeidel) {
-        std::cout << el << " ";
+        fout << el << " ";
     }
-    std::cout << std::endl;
-    std::cout << "Zeidel_nev: " << zeidel_nev << std::endl;
+    fout << ")" << std::endl;
+    fout << "Zeidel_nev: " << zeidel_nev << std::endl;
     return 0;
 }
